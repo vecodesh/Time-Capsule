@@ -1,7 +1,12 @@
 import React from 'react';
+import Login from './LoginComponent/Login';
+import Signup from './LoginComponent/Signup';
 const App=()=>{
   return(
-    <h1>We have created our react project </h1>
+      <div>
+        <Login/>
+        <Signup/>
+      </div>
   )
 }
 export default App;
