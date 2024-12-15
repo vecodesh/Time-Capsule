@@ -1,159 +1,195 @@
-import React, { useState } from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Box,
-  IconButton,
-  Collapse,
-} from "@mui/material";
-import { Link } from "react-router-dom"; // Import Link for routing
+import React, { useState, useEffect } from "react";
+import { AppBar, Toolbar, Typography, Button, Box, IconButton, Collapse, Tooltip, Fab } from "@mui/material";
+import { Link } from "react-router-dom";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import "./LandingPage.css";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import "./LandingPage.css"; // Import the external CSS for styling
 
 const LandingPage = () => {
   const [showDetails, setShowDetails] = useState(false);
+  const [showScroll, setShowScroll] = useState(false);
 
   const handleLearnMore = () => {
     setShowDetails((prev) => !prev);
   };
 
+  const handleScroll = () => {
+    if (window.scrollY > 300) {
+      setShowScroll(true);
+    } else {
+      setShowScroll(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const profileData = [
+    {
+      name: "VISITHRAN D",
+      image: "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/f8239007-7d36-45ce-a0a1-fdf91052b10e/299f5e14-73c4-4a9b-99c9-e44adbc218cf.png",
+      linkedIn: "https://www.linkedin.com/in/visithran-d-37a877291/",
+    },
+    {
+      name: "VIJAY SYAM BK",
+      image: "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/f8239007-7d36-45ce-a0a1-fdf91052b10e/299f5e14-73c4-4a9b-99c9-e44adbc218cf.png",
+      linkedIn: "https://www.linkedin.com/in/vijaysyam-bk/",
+    },
+    {
+      name: "VEDESH N",
+      image: "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/f8239007-7d36-45ce-a0a1-fdf91052b10e/299f5e14-73c4-4a9b-99c9-e44adbc218cf.png",
+      linkedIn: "https://www.linkedin.com/in/vedesh-n-b631b82a1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    },
+    {
+      name: "VIJAY PH",
+      image: "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/f8239007-7d36-45ce-a0a1-fdf91052b10e/299f5e14-73c4-4a9b-99c9-e44adbc218cf.png",
+      linkedIn: "https://www.linkedin.com/",
+    },
+  ];
+
   return (
     <Box className="landing-page">
-      
-      <AppBar
-        position="absolute"
-        color="transparent"
-        elevation={0}
-        className="app-bar"
-      >
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            TRAILBLAZERS
-          </Typography>
-          <Box>
-            <Button
-              color="inherit"
-              sx={{ mx: 1, fontWeight: "bold" }}
-              component={Link}
-              to="/login"
-            >
-              Login
-            </Button>
-            <Button
-              variant="outlined"
-              color="inherit"
-              sx={{
-                mx: 1,
-                fontWeight: "bold",
-                borderRadius: "20px",
-                textTransform: "none",
-              }}
-              component={Link}
-              to="/signup"
-            >
-              Signup
-            </Button>
-          </Box>
+      {/* Running Text */}
+      <Box className="running-text-container">
+        <Typography variant="h6" className="running-text">
+          TRAILBLAZERS! Time Capsules: Reliving memories, Setting goals, Acknowledging growth, Decluttering your mind. Time capsules are often created for historical purposes, but they can also be personal projects, meant for an individual or family to reflect on their past at a future point in time.
+        </Typography>
+      </Box>
+
+      {/* Navigation Bar */}
+      <AppBar position="absolute" color="transparent" elevation={0} className="app-bar">
+        <Toolbar sx={{ justifyContent: "space-between", marginTop: "80px" }}>
+          
         </Toolbar>
       </AppBar>
 
-      
-      <Box className="content-container" textAlign="center">
+      {/* Content */}
+      <Box className="content-container" textAlign="center" sx={{ pt: 10 }}>
         <Box className="glass-card">
-          <Typography
-            variant="h3"
-            sx={{ fontWeight: "bold", color: "#000", mb: 2 }}
-          >
-            Time Capsule
+          <Typography variant="h1" sx={{ fontSize: "4rem", fontWeight: "bold", color: "black", mb: 3 }}>
+            TRAILBLAZERS!
           </Typography>
-          <Typography
-            variant="h4"
-            sx={{ fontWeight: "light", color: "#666", mb: 3 }}
-          >
+          <Typography variant="h4" sx={{ fontWeight: "light", color: "#666", mb: 3 }}>
             — Write to the Future —
           </Typography>
-          <Typography
-            variant="body1"
-            sx={{ color: "#444", maxWidth: "500px", margin: "0 auto" }}
-          >
-            Dear Future Me,
-            <br></br>
-                Hey there! What are you up to a year from now? Or, from your perspective, what was I doing a year ago? Time travel is weird. Honestly, I don’t know what to say—just a quick “Hi, how’s it going?” from your carefree, clueless past self.
-                If this feels silly, delete it—I won’t mind. But I hope it brings a smile and reminds you to enjoy life. Stay safe, have fun, and keep being awesome.
-                Cheers,
-                <br></br>
-                Your past self
+          <Typography variant="body1" className="content-text">
+            Dear Future Me, <br />
+            Hey there! What are you up to a year from now? Or, from your perspective, what was I doing a year ago? Time travel is weird. Honestly, I don’t know what to say—just a quick “Hi, how’s it going?” from your carefree, clueless past self. <br />
+            Stay safe, have fun, and keep being awesome.
           </Typography>
-          <Box mt={3}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleLearnMore}
-              sx={{
-                borderRadius: "20px",
-                px: 4,
-                py: 1,
-                textTransform: "none",
-                fontWeight: "bold",
-              }}
-            >
-              {showDetails ? "Hide Details" : "Learn More"}
-            </Button>
-          </Box>
-
-          
+          <Button variant="contained" color="primary" onClick={handleLearnMore} className="learn-more-btn">
+            {showDetails ? "Hide Details" : "Learn More"}
+          </Button>
           <Collapse in={showDetails} timeout="auto" unmountOnExit>
-            <Box
-              mt={3}
-              sx={{
-                textAlign: "left",
-                maxWidth: "500px",
-                margin: "0 auto",
-                backgroundColor: "#f9f9f9",
-                borderRadius: "12px",
-                p: 2,
-              }}
-            >
-              <Typography variant="h6" sx={{ mb: 1, fontWeight: "bold" }}>
-                TimeCapsule letters are great for…
-              </Typography>
-              <Typography variant="body1" sx={{ mb: 1 }}>
-                ❤️ <strong>Reliving memories</strong> in vivid detail
-              </Typography>
-              <Typography variant="body1" sx={{ mb: 1 }}>
-                📈 <strong>Acknowledging growth</strong> & achievements
-              </Typography>
-              <Typography variant="body1" sx={{ mb: 1 }}>
-                ✅ <strong>Setting goals</strong> for the future
-              </Typography>
+            <Box className="details-box">
               <Typography variant="body1">
+                ❤️ <strong>Reliving memories</strong> in vivid detail <br />
+                📈 <strong>Acknowledging growth</strong> & achievements <br />
+                ✅ <strong>Setting goals</strong> for the future <br />
                 😌 <strong>Decluttering your mind</strong> to find some headspace
               </Typography>
             </Box>
           </Collapse>
         </Box>
+
+        {/* Action Buttons */}
+        <Box className="action-buttons" textAlign="center" sx={{ mt: 3 }}>
+          <Button
+            variant="contained"
+            className="login-btn"
+            sx={{
+              mx: 2,
+              fontWeight: "bold",
+              borderRadius: "20px",
+              textTransform: "none",
+              backgroundColor: "transparent",
+              color: "black",
+              fontSize: "1.25rem", // Medium-large font size
+              padding: "12px 24px", // Slightly smaller padding
+              "&:hover": {
+                backgroundColor: "black",
+                color: "white",
+              },
+            }}
+            component={Link}
+            to="/login"
+          >
+            Login
+          </Button>
+          <Button
+            variant="outlined"
+            className="signup-btn"
+            sx={{
+              mx: 2,
+              fontWeight: "bold",
+              borderRadius: "20px",
+              textTransform: "none",
+              borderColor: "black",
+              color: "black",
+              fontSize: "1.25rem", // Medium-large font size
+              padding: "12px 24px", // Slightly smaller padding
+              "&:hover": {
+                backgroundColor: "black",
+                color: "white",
+              },
+            }}
+            component={Link}
+            to="/signup"
+          >
+            Signup
+          </Button>
+        </Box>
       </Box>
 
-      
+      {/* Profile Section */}
+      <Box className="profile-container">
+  {profileData.map((profile, index) => (
+    <Box key={index} className="profile-frame">
+      <img src={profile.image} alt={profile.name} className="profile-image" />
+      <Typography className="profile-name">{profile.name}</Typography>
+      <Typography className="profile-role">Software Engineer</Typography> {/* Add this line */}
+      <IconButton href={profile.linkedIn} target="_blank" className="linkedin-btn">
+        <LinkedInIcon fontSize="large" />
+      </IconButton>
+    </Box>
+  ))}
+</Box>
+
+
+
+      {/* Social Icons */}
       <Box className="social-icons">
-        {["Facebook", "Twitter", "Instagram"].map((platform) => (
-          <IconButton key={platform} aria-label={platform}>
-            {platform === "Facebook" && (
-              <FacebookIcon sx={{ color: "white" }} />
-            )}
-            {platform === "Twitter" && <TwitterIcon sx={{ color: "white" }} />}
-            {platform === "Instagram" && (
-              <InstagramIcon sx={{ color: "white" }} />
-            )}
-          </IconButton>
-        ))}
+        <IconButton>
+          <FacebookIcon />
+        </IconButton>
+        <IconButton>
+          <TwitterIcon />
+        </IconButton>
+        <IconButton>
+          <InstagramIcon />
+        </IconButton>
       </Box>
+
+      {/* Scroll to Top */}
+      {showScroll && (
+        <Tooltip title="Scroll to top">
+          <Fab color="primary" size="small" onClick={scrollToTop} className="scroll-to-top">
+            <KeyboardArrowUpIcon />
+          </Fab>
+        </Tooltip>
+      )}
     </Box>
   );
 };
-
-export default LandingPage;
+export default LandingPage; 
