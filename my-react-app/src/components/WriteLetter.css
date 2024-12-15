@@ -1,0 +1,25 @@
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form .form-select, form .form-control {
+    margin-bottom: 20px;
+}
+
+form .btn {
+    background-color: #ff4500;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+form .btn:hover {
+    background-color: #cc3700;
+}
