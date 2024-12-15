@@ -1,20 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./HomePage.css";  // Import CSS for HomePage
+import { Button, TextField } from "@mui/material";
+import { FaSearch } from "react-icons/fa";
+import "./HomePage.css";
 
-const HomePage = () => {
-    return (
-        <div className="container py-5">
-            <h1>Welcome to Your Time Capsule</h1>
-            <p>Start creating letters, set delivery dates, and explore your memories.</p>
-            <div className="mt-4">
-                <Link to="/write-letter" className="btn btn-primary mx-2">Write a Letter</Link>
-                <Link to="/view-letters" className="btn btn-secondary mx-2">View Letters</Link>
-                <Link to="/achievements" className="btn btn-success mx-2">Achievements</Link>
-                <Link to="/community" className="btn btn-info mx-2">Community</Link>
-            </div>
+const HomePage= () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  return (
+    <div>
+      <div className="banner">
+        <video autoPlay loop muted playsInline>
+          <source src={require('./Home.mp4')} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="navbar">
+          <div className="nav-links">
+            <Link to="/write-letter" className="btn btn-primary mx-2">Write a Letter</Link>
+            <Link to="/view-letters" className="btn btn-secondary mx-2">View Letters</Link>
+            <Link to="/achievements" className="btn btn-success mx-2">Achievements</Link>
+            <Link to="/community" className="btn btn-info mx-2">Community</Link>
+          </div>
+          <div className="search-bar">
+            <TextField
+              label="Search"
+              variant="outlined"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              fullWidth
+            />
+            <Button className="search-button">
+              <FaSearch />
+            </Button>
+          </div>
         </div>
-    );
+        <div className="welcome">
+          <h1>Welcome to Letofo</h1>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default HomePage;
