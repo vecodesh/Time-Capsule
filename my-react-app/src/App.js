@@ -5,6 +5,7 @@ import LoginPage from "./components/LoginPage";
 import SignupPage from "./components/SignupPage";
 import HomePage from "./components/HomePage";
 import WriteLetter from "./components/WriteLetter";
+import Achievements from "./components/Achievements";
 import "./App.css"; 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/home" element={<HomePage />} />
               <Route path="/write-letter" element={<WriteLetter />} />
+              <Route path="/achievements" element={<Achievements />} />
           </Routes>
       </Router>
   );
