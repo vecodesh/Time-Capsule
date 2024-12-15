@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import SendIcon from "@mui/icons-material/Send";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import "./WriteLetter.css";
 
 const WriteLetter = () => {
@@ -25,18 +27,16 @@ const WriteLetter = () => {
 
   const handleMoodChange = (e) => setMood(e.target.value);
   const handleThemeChange = (e) => setTheme(e.target.value);
-  const handleMessageChange = (e) => setMessage(e.target.value);
+  const handleMessageChange = (value) => setMessage(value); // Updated for Quill editor
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handleAttachmentChange = (e) =>
     setAttachments([...attachments, ...e.target.files]);
 
-  // Email format validation
   const isValidEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   };
 
-  // Validation for required fields
   const validateForm = () => {
     const newErrors = {};
     if (!mood) newErrors.mood = "Please select a mood.";
@@ -64,12 +64,12 @@ const WriteLetter = () => {
 
   return (
     <Container
-      maxWidth="sm"
+      maxWidth="md"
       className="letter-container"
       sx={{
         mt: 5,
         mb: 0,
-        p: 3,
+        p: 4,
         borderRadius: 4,
         boxShadow: 4,
         backgroundColor: "#f3f4f6",
@@ -93,7 +93,6 @@ const WriteLetter = () => {
         Community Letters
       </Typography>
       <Box component="form" onSubmit={handleSubmit} className="form-animate">
-        {/* Mood Selection */}
         <FormControl fullWidth margin="normal" error={!!errors.mood}>
           <InputLabel>Select Mood</InputLabel>
           <Select value={mood} onChange={handleMoodChange} label="Select Mood">
@@ -109,7 +108,6 @@ const WriteLetter = () => {
           )}
         </FormControl>
 
-        {/* Theme Selection */}
         <FormControl fullWidth margin="normal" error={!!errors.theme}>
           <InputLabel>Select Theme</InputLabel>
           <Select value={theme} onChange={handleThemeChange} label="Select Theme">
@@ -124,7 +122,6 @@ const WriteLetter = () => {
           )}
         </FormControl>
 
-        {/* Email Field */}
         <TextField
           label="Your Email Address"
           variant="outlined"
@@ -136,21 +133,31 @@ const WriteLetter = () => {
           helperText={errors.email}
         />
 
-        {/* Message Field */}
-        <TextField
-          label="Write your message here"
-          variant="outlined"
-          fullWidth
-          multiline
-          rows={6}
-          value={message}
-          onChange={handleMessageChange}
-          margin="normal"
-          error={!!errors.message}
-          helperText={errors.message}
-        />
+        <Typography variant="body2" sx={{ mb: 1 }}>
+          Write your message:
+        </Typography>
+        <Box
+          sx={{
+            minHeight: "300px",
+            maxHeight: "400px",
+            overflow: "auto",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+          }}
+        >
+          <ReactQuill
+            value={message}
+            onChange={handleMessageChange}
+            theme="snow"
+            placeholder="Write your message here..."
+          />
+        </Box>
+        {errors.message && (
+          <Typography color="error" variant="caption">
+            {errors.message}
+          </Typography>
+        )}
 
-        {/* File Attachments */}
         <Box display="flex" alignItems="center" marginY={2}>
           <IconButton color="primary" component="label">
             <AttachFileIcon fontSize="large" />
@@ -168,7 +175,6 @@ const WriteLetter = () => {
           </Typography>
         </Box>
 
-        {/* Submit Button */}
         <Button
           type="submit"
           variant="contained"
