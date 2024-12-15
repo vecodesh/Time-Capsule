@@ -1,0 +1,73 @@
+
+.landing-page {
+    height: 100vh;
+    background: linear-gradient(135deg, #8165fc, #3e8aa3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+
+  .landing-page::before,
+  .landing-page::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+    border-radius: 50%;
+  }
+  
+  .landing-page::before {
+    top: 10%;
+    left: 10%;
+  }
+  
+  .landing-page::after {
+    bottom: 10%;
+    right: 10%;
+  }
+  
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 2rem 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+  }
+  
+
+  .social-icons {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+  }
+  
+  .social-icons .MuiSvgIcon-root {
+    font-size: 30px;
+    transition: transform 0.3s ease;
+  }
+  
+  .social-icons .MuiSvgIcon-root:hover {
+    transform: scale(1.2);
+  }
+  
+.top {
+    padding-bottom: 0;
+  }
+  
+  .app-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    z-index: 10; 
+  }
+  
