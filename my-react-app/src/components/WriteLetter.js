@@ -1,52 +1,36 @@
 import React, { useState } from "react";
-import {
-  Container,
-  Box,
-  Typography,
-  TextField,
-  Button,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
-  IconButton,
-} from "@mui/material";
-import AttachFileIcon from "@mui/icons-material/AttachFile";
-import SendIcon from "@mui/icons-material/Send";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import "./WriteLetter.css";
+import "react-quill/dist/quill.bubble.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "./WriteLetter.css"; // Your provided CSS
 
 const WriteLetter = () => {
   const [mood, setMood] = useState("");
-  const [theme, setTheme] = useState("classic");
+  const [theme, setTheme] = useState("snow");
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
   const [attachments, setAttachments] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(new Date()); // Date picker state
   const [errors, setErrors] = useState({});
 
   const handleMoodChange = (e) => setMood(e.target.value);
   const handleThemeChange = (e) => setTheme(e.target.value);
-  const handleMessageChange = (value) => setMessage(value); // Updated for Quill editor
+  const handleMessageChange = (value) => setMessage(value);
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handleAttachmentChange = (e) =>
     setAttachments([...attachments, ...e.target.files]);
+  const handleDateChange = (date) => setSelectedDate(date);
 
-  const isValidEmail = (email) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const validateForm = () => {
     const newErrors = {};
     if (!mood) newErrors.mood = "Please select a mood.";
-    if (!theme) newErrors.theme = "Please select a theme.";
     if (!message.trim()) newErrors.message = "Message cannot be empty.";
-    if (!email) {
-      newErrors.email = "Email is required.";
-    } else if (!isValidEmail(email)) {
-      newErrors.email = "Please enter a valid email address.";
-    }
+    if (!email) newErrors.email = "Email is required.";
+    else if (!isValidEmail(email)) newErrors.email = "Invalid email address.";
     return newErrors;
   };
 
@@ -54,8 +38,8 @@ const WriteLetter = () => {
     e.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
-      console.log({ mood, theme, message, email, attachments });
       alert("Letter submitted successfully!");
+      console.log({ mood, theme, message, email, selectedDate, attachments });
       setErrors({});
     } else {
       setErrors(validationErrors);
@@ -63,136 +47,82 @@ const WriteLetter = () => {
   };
 
   return (
-    <Container
-      maxWidth="md"
-      className="letter-container"
-      sx={{
-        mt: 5,
-        mb: 0,
-        p: 4,
-        borderRadius: 4,
-        boxShadow: 4,
-        backgroundColor: "#f3f4f6",
-        fontFamily: '"Roboto", Arial, sans-serif',
-      }}
-    >
-      <Typography
-        variant="h4"
-        className="custom-title"
-        gutterBottom
-        textAlign="center"
-        color="#fff"
-        sx={{
-          backgroundColor: "#1f5ba5",
-          borderRadius: "8px",
-          p: 2,
-          fontWeight: "bold",
-          fontFamily: '"Roboto", Arial, sans-serif',
-        }}
-      >
-        Community Letters
-      </Typography>
-      <Box component="form" onSubmit={handleSubmit} className="form-animate">
-        <FormControl fullWidth margin="normal" error={!!errors.mood}>
-          <InputLabel>Select Mood</InputLabel>
-          <Select value={mood} onChange={handleMoodChange} label="Select Mood">
-            <MenuItem value="">Choose your mood</MenuItem>
-            <MenuItem value="happy">Happy</MenuItem>
-            <MenuItem value="excited">Excited</MenuItem>
-            <MenuItem value="reflective">Reflective</MenuItem>
-          </Select>
-          {errors.mood && (
-            <Typography color="error" variant="caption">
-              {errors.mood}
-            </Typography>
-          )}
-        </FormControl>
-
-        <FormControl fullWidth margin="normal" error={!!errors.theme}>
-          <InputLabel>Select Theme</InputLabel>
-          <Select value={theme} onChange={handleThemeChange} label="Select Theme">
-            <MenuItem value="classic">Classic</MenuItem>
-            <MenuItem value="futuristic">Futuristic</MenuItem>
-            <MenuItem value="scrapbook">Scrapbook</MenuItem>
-          </Select>
-          {errors.theme && (
-            <Typography color="error" variant="caption">
-              {errors.theme}
-            </Typography>
-          )}
-        </FormControl>
-
-        <TextField
-          label="Your Email Address"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={email}
-          onChange={handleEmailChange}
-          error={!!errors.email}
-          helperText={errors.email}
-        />
-
-        <Typography variant="body2" sx={{ mb: 1 }}>
-          Write your message:
-        </Typography>
-        <Box
-          sx={{
-            minHeight: "300px",
-            maxHeight: "400px",
-            overflow: "auto",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-          }}
-        >
+    <div className="community-container">
+      <form className="community-form" onSubmit={handleSubmit}>
+        <h2 className="community-header">Write Your Letter</h2>
+  
+        <div className="form-group">
+          <label htmlFor="mood">Select Mood</label>
+          <select id="mood" value={mood} onChange={handleMoodChange}>
+            <option value="">-- Choose your mood --</option>
+            <option value="happy">Happy</option>
+            <option value="excited">Excited</option>
+            <option value="reflective">Reflective</option>
+          </select>
+          {errors.mood && <p className="error">{errors.mood}</p>}
+        </div>
+  
+        <div className="form-group">
+          <label htmlFor="theme">Select Theme</label>
+          <select id="theme" value={theme} onChange={handleThemeChange}>
+            <option value="snow">Classic</option>
+            <option value="bubble">Futuristic</option>
+          </select>
+        </div>
+  
+        <div className="form-group">
+          <label htmlFor="email">Your Email</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={handleEmailChange}
+            placeholder="Enter your email"
+          />
+          {errors.email && <p className="error">{errors.email}</p>}
+        </div>
+  
+        <div className="form-group">
+          <label htmlFor="message">Your Message</label>
           <ReactQuill
+            id="message"
             value={message}
             onChange={handleMessageChange}
-            theme="snow"
+            theme={theme}
             placeholder="Write your message here..."
           />
-        </Box>
-        {errors.message && (
-          <Typography color="error" variant="caption">
-            {errors.message}
-          </Typography>
-        )}
-
-        <Box display="flex" alignItems="center" marginY={2}>
-          <IconButton color="primary" component="label">
-            <AttachFileIcon fontSize="large" />
-            <input
-              type="file"
-              hidden
-              multiple
-              onChange={handleAttachmentChange}
-            />
-          </IconButton>
-          <Typography variant="body2" marginLeft={1}>
-            {attachments.length > 0
-              ? `${attachments.length} file(s) attached`
-              : "Attach files"}
-          </Typography>
-        </Box>
-
-        <Button
-          type="submit"
-          variant="contained"
-          endIcon={<SendIcon />}
-          fullWidth
-          sx={{
-            mt: 3,
-            backgroundColor: "#3f51b5",
-            color: "#fff",
-            "&:hover": { backgroundColor: "#303f9f" },
-            fontFamily: '"Roboto", Arial, sans-serif',
-          }}
-        >
-          Send to Future
-        </Button>
-      </Box>
-    </Container>
+          {errors.message && <p className="error">{errors.message}</p>}
+        </div>
+  
+        <div className="form-group">
+          <label htmlFor="date">Select a Date</label>
+          <DatePicker
+            id="date"
+            selected={selectedDate}
+            onChange={handleDateChange}
+            dateFormat="dd/MM/yyyy"
+            className="react-datepicker__input-container"
+          />
+        </div>
+  
+        <div className="form-group">
+          <label htmlFor="attachments">Attach Files</label>
+          <input
+            type="file"
+            id="attachments"
+            multiple
+            onChange={handleAttachmentChange}
+          />
+          {attachments.length > 0 && (
+            <p>{attachments.length} file(s) selected</p>
+          )}
+        </div>
+  
+        <button type="submit">Send Letter</button>
+      </form>
+    </div>
   );
+  
 };
 
 export default WriteLetter;

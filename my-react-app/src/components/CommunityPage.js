@@ -12,8 +12,8 @@ const CommunityPage = () => {
 
             const generatedLetters = data.results.map((user, index) => ({
                 id: index + 1,
-                userName: `${user.name.first} ${user.name.last}`,
-                snippet: `Stay positive and keep striving! - ${user.name.first}`,
+                userName: `${user.name.first} ${user.name.last}`, // Fixed
+                snippet: `Stay positive and keep striving! - ${user.name.first}`, // Fixed
                 profilePic: user.picture.thumbnail,
             }));
 

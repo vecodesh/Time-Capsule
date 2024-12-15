@@ -6,7 +6,8 @@ import SignupPage from "./components/SignupPage";
 import HomePage from "./components/HomePage";
 import WriteLetter from "./components/WriteLetter";
 import Achievements from "./components/Achievements";
-import "./App.css"; 
+import CommunityPage from "./components/CommunityPage";
+import "./App.css";  // Import main CSS for App
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
               <Route path="/home" element={<HomePage />} />
               <Route path="/write-letter" element={<WriteLetter />} />
               <Route path="/achievements" element={<Achievements />} />
+              <Route path="/community" element={<CommunityPage />} />
           </Routes>
       </Router>
   );
