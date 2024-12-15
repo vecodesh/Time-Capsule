@@ -46,6 +46,9 @@ const WriteLetter = () => {
     }
   };
 
+  // Format the selected date and time for display
+  const formattedDateTime = selectedDate.toLocaleString();
+
   return (
     <div className="community-container">
       <form className="community-form" onSubmit={handleSubmit}>
@@ -95,14 +98,23 @@ const WriteLetter = () => {
         </div>
   
         <div className="form-group">
-          <label htmlFor="date">Select a Date</label>
+          <label htmlFor="date">Select Date and Time</label>
           <DatePicker
             id="date"
             selected={selectedDate}
             onChange={handleDateChange}
             dateFormat="dd/MM/yyyy"
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15} // Time intervals in minutes
             className="react-datepicker__input-container"
           />
+        </div>
+
+        {/* Display the selected date and time below the picker */}
+        <div className="form-group">
+          <label>Selected Date and Time:</label>
+          <p>{formattedDateTime}</p>
         </div>
   
         <div className="form-group">
@@ -122,7 +134,6 @@ const WriteLetter = () => {
       </form>
     </div>
   );
-  
 };
 
 export default WriteLetter;
