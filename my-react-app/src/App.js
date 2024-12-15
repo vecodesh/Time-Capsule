@@ -5,7 +5,9 @@ import LoginPage from "./components/LoginPage";
 import SignupPage from "./components/SignupPage";
 import HomePage from "./components/HomePage";
 import WriteLetter from "./components/WriteLetter";
-import "./App.css";
+import Achievements from "./components/Achievements";
+import CommunityPage from "./components/CommunityPage";
+import "./App.css"; 
 
 const App = () => {
   return (
@@ -16,6 +18,8 @@ const App = () => {
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/home" element={<HomePage />} />
               <Route path="/write-letter" element={<WriteLetter />} />
+              <Route path="/achievements" element={<Achievements />} />
+              <Route path="/community" element={<CommunityPage />} />
           </Routes>
       </Router>
   );
