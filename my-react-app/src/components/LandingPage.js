@@ -80,8 +80,13 @@ const LandingPage = () => {
             variant="body1"
             sx={{ color: "#444", maxWidth: "500px", margin: "0 auto" }}
           >
-            Capture, cherish, and relive the moments that matter most and keep
-            your memories safe with encrypted and cloud-based storage.
+            Dear Future Me,
+            <br></br>
+                Hey there! What are you up to a year from now? Or, from your perspective, what was I doing a year ago? Time travel is weird. Honestly, I don’t know what to say—just a quick “Hi, how’s it going?” from your carefree, clueless past self.
+                If this feels silly, delete it—I won’t mind. But I hope it brings a smile and reminds you to enjoy life. Stay safe, have fun, and keep being awesome.
+                Cheers,
+                <br></br>
+                Your past self
           </Typography>
           <Box mt={3}>
             <Button
