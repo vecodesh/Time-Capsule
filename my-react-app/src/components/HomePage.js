@@ -39,7 +39,7 @@ const HomePage= () => {
           </div>
         </div>
         <div className="welcome">
-          <h1>Welcome to Letofo</h1>
+          <h1>Welcome to Letter to Future</h1>
         </div>
       </div>
     </div>
