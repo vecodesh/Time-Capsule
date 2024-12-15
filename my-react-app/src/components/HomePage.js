@@ -40,6 +40,8 @@ const HomePage= () => {
         </div>
         <div className="welcome">
           <h1>Welcome to Letofo</h1>
+          <p className="p">Capture, cherish, and relive the moments that matter most and keep
+          your memories safe with encrypted and cloud-based storage.</p>
         </div>
       </div>
     </div>
