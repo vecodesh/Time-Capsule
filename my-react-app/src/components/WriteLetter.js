@@ -52,7 +52,7 @@ const WriteLetter = () => {
   return (
     <div className="community-container">
       <form className="community-form" onSubmit={handleSubmit}>
-        <h2 className="community-header">Write Your Letter</h2>
+        <h2 className="header">Write Your Letter</h2>
   
         <div className="form-group">
           <label htmlFor="mood">Select Mood</label>

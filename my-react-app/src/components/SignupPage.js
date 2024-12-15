@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import axios from 'axios';
 import './SignupPage.css';
 
 const SignUpPage = () => {
@@ -14,31 +15,23 @@ const SignUpPage = () => {
   const [errors, setErrors] = useState({});
   const [signedUp, setSignedUp] = useState(false);
 
-  // Field-level validation with regex
+  // Field-level validation
   const validateField = (field, value) => {
     switch (field) {
       case 'name':
         return value.length > 3 ? '' : 'Name must be greater than 3 characters';
       case 'age':
-        return value >= 15 && value <= 64
-          ? ''
-          : 'Age must be between 15 and 64';
+        return value >= 15 && value <= 64 ? '' : 'Age must be between 15 and 64';
       case 'email':
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-          ? ''
-          : 'Invalid email address';
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Invalid email address';
       case 'phone':
-        return /^[0-9]{10}$/.test(value)
-          ? ''
-          : 'Phone number must be 10 digits';
+        return /^[0-9]{10}$/.test(value) ? '' : 'Phone number must be 10 digits';
       case 'username':
         return /^[a-zA-Z0-9]{4,15}$/.test(value)
           ? ''
           : 'Username must be 4-15 alphanumeric characters';
       case 'password':
-        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(
-          value
-        )
+        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(value)
           ? ''
           : 'Password must include 8 characters, an uppercase letter, a lowercase letter, a digit, and a special character';
       default:
@@ -68,8 +61,24 @@ const SignUpPage = () => {
   const handleSignUp = () => {
     if (!validate()) return;
 
-    // Submit logic or API call
-    setSignedUp(true);
+    // Send POST request to the server
+    axios
+      .post('http://localhost:5000/Users', formData)
+      .then((response) => {
+        console.log('User added successfully:', response.data);
+        setFormData({
+          name: '',
+          age: '',
+          email: '',
+          phone: '',
+          username: '',
+          password: '',
+        });
+        setSignedUp(true); // Redirect on success
+      })
+      .catch((error) => {
+        console.error('Error adding user:', error);
+      });
   };
 
   if (signedUp) {
@@ -85,37 +94,31 @@ const SignUpPage = () => {
       <div className="signupContainer">
         <h1 className="heading">SIGN UP</h1>
         <div className="inputGroup">
-          {['name', 'age', 'email', 'phone', 'username', 'password'].map(
-            (field) => (
-              <div key={field}>
-                <input
-                  type={
-                    field === 'age'
-                      ? 'number'
-                      : field === 'email'
-                      ? 'email'
-                      : field === 'password'
-                      ? 'password'
-                      : 'text'
-                  }
-                  name={field}
-                  className="inputField"
-                  value={formData[field]}
-                  onChange={handleChange}
-                  placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1)}`}
-                />
-                {errors[field] && (
-                  <span className="errorMessage">{errors[field]}</span>
-                )}
-              </div>
-            )
-          )}
+          {['name', 'age', 'email', 'phone', 'username', 'password'].map((field) => (
+            <div key={field}>
+              <input
+                type={
+                  field === 'age'
+                    ? 'number'
+                    : field === 'email'
+                    ? 'email'
+                    : field === 'password'
+                    ? 'password'
+                    : 'text'
+                }
+                name={field}
+                className="inputField"
+                value={formData[field]}
+                onChange={handleChange}
+                placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1)}`}
+              />
+              {errors[field] && <span className="errorMessage">{errors[field]}</span>}
+            </div>
+          ))}
         </div>
-        <div>
-          <button className="signupButton" onClick={handleSignUp}>
-            Sign Up
-          </button>
-        </div>
+        <button className="signupButton" onClick={handleSignUp}>
+          Sign Up
+        </button>
       </div>
     </div>
   );

@@ -21,11 +21,11 @@
 }
 
 /* === Header === */
-.community-header {
+.header {
   font-size: 1.8rem;
   text-align: center;
   margin-bottom: 20px;
-  color: #333333;
+  color: #161414 !important; /* Ensures white color */
   font-weight: bold;
 }
 
