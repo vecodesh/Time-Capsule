@@ -1,63 +1,124 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./SignupPage.css";
+import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import './SignupPage.css';
 
-const SignupPage = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate();
+const SignUpPage = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    age: '',
+    email: '',
+    phone: '',
+    username: '',
+    password: '',
+  });
+  const [errors, setErrors] = useState({});
+  const [signedUp, setSignedUp] = useState(false);
 
-    const handleSignup = (e) => {
-        e.preventDefault();
-        // Simulate successful signup (you can add real validation here)
-        if (name && email && password) {
-            // Redirect to the Home page after successful signup
-            navigate("/home");
-        }
-    };
+  // Field-level validation with regex
+  const validateField = (field, value) => {
+    switch (field) {
+      case 'name':
+        return value.length > 3 ? '' : 'Name must be greater than 3 characters';
+      case 'age':
+        return value >= 15 && value <= 64
+          ? ''
+          : 'Age must be between 15 and 64';
+      case 'email':
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+          ? ''
+          : 'Invalid email address';
+      case 'phone':
+        return /^[0-9]{10}$/.test(value)
+          ? ''
+          : 'Phone number must be 10 digits';
+      case 'username':
+        return /^[a-zA-Z0-9]{4,15}$/.test(value)
+          ? ''
+          : 'Username must be 4-15 alphanumeric characters';
+      case 'password':
+        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(
+          value
+        )
+          ? ''
+          : 'Password must include 8 characters, an uppercase letter, a lowercase letter, a digit, and a special character';
+      default:
+        return '';
+    }
+  };
 
-    return (
-        <div className="container py-5">
-            <h2>Signup</h2>
-            <form onSubmit={handleSignup}>
-                <div className="mb-3">
-                    <label htmlFor="name" className="form-label">Full Name</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="name"
-                        placeholder="Enter your full name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email address</label>
-                    <input
-                        type="email"
-                        className="form-control"
-                        id="email"
-                        placeholder="Enter your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password</label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        id="password"
-                        placeholder="Enter your password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-                <button type="submit" className="btn btn-success">Sign Up</button>
-            </form>
+  // Validate all fields
+  const validate = () => {
+    const newErrors = {};
+    Object.keys(formData).forEach((field) => {
+      const error = validateField(field, formData[field]);
+      if (error) newErrors[field] = error;
+    });
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    // Real-time validation
+    setErrors({ ...errors, [name]: validateField(name, value) });
+  };
+
+  const handleSignUp = () => {
+    if (!validate()) return;
+
+    // Submit logic or API call
+    setSignedUp(true);
+  };
+
+  if (signedUp) {
+    return <Navigate to="/login" />;
+  }
+
+  return (
+    <div className="manner">
+      <video autoPlay loop muted playsInline>
+        <source src={require('./Login.mp4')} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div className="signupContainer">
+        <h1 className="heading">SIGN UP</h1>
+        <div className="inputGroup">
+          {['name', 'age', 'email', 'phone', 'username', 'password'].map(
+            (field) => (
+              <div key={field}>
+                <input
+                  type={
+                    field === 'age'
+                      ? 'number'
+                      : field === 'email'
+                      ? 'email'
+                      : field === 'password'
+                      ? 'password'
+                      : 'text'
+                  }
+                  name={field}
+                  className="inputField"
+                  value={formData[field]}
+                  onChange={handleChange}
+                  placeholder={`Enter ${field.charAt(0).toUpperCase() + field.slice(1)}`}
+                />
+                {errors[field] && (
+                  <span className="errorMessage">{errors[field]}</span>
+                )}
+              </div>
+            )
+          )}
         </div>
-    );
+        <div>
+          <button className="signupButton" onClick={handleSignUp}>
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default SignupPage;
+export default SignUpPage;

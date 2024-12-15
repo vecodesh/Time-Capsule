@@ -1,50 +1,95 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./LoginPage.css";
+import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import './LoginPage.css'; // Correct CSS file name
 
 const LoginPage = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLogin, setIsLogin] = useState(true);
+  const [isHome, setIsHome] = useState(true);
+  const [error, setError] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        // Simulate successful login (you can add real validation here)
-        if (email && password) {
-            navigate("/home"); // Redirect to the Home page
-        }
-    };
+  const handleUsernameChange = (e) => setUsername(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
 
-    return (
-        <div className="container py-5">
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
-                <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email address</label>
+  const handleLogin = () => {
+    if (username.trim() === '' || password.trim() === '') {
+      setError('Please enter both username and password');
+      return;
+    }
+
+    // You can implement your login logic later (e.g., using axios to verify user credentials)
+    // For now, let's assume successful login
+    setLoggedIn(true);
+    setIsHome(false);
+    setError('');
+  };
+
+  if (loggedIn) {
+    return <Navigate to="/home" />;
+  }
+
+  return (
+    <div>
+      {isHome ? (
+        <div>
+          {isLogin ? (
+            <div className="manner">
+              <video autoPlay loop muted playsInline>
+                <source src={require('./Login.mp4')} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="loginContainer">
+                <h1 className="heading">LOGIN</h1>
+                <div className="inputGroup">
+                  <p style={{ color: 'white' }}>
+                    Username
                     <input
-                        type="email"
-                        className="form-control"
-                        id="email"
-                        placeholder="Enter your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                      className="inputField"
+                      type='text'
+                      placeholder='Enter Username'
+                      value={username}
+                      onChange={handleUsernameChange}
                     />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password</label>
+                  </p>
+                  <p style={{ color: 'white' }}>
+                    Password
                     <input
-                        type="password"
-                        className="form-control"
-                        id="password"
-                        placeholder="Enter your password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                      className="inputField"
+                      type='password'
+                      placeholder='Enter Password'
+                      value={password}
+                      onChange={handlePasswordChange}
                     />
+                  </p>
                 </div>
-                <button type="submit" className="btn btn-primary">Login</button>
-            </form>
+                {error && <p className="errorMessage">{error}</p>}
+                <div>
+                  <button className="loginButton" onClick={handleLogin}>
+                    Login
+                  </button>
+                </div>
+                <div className="signupLink">
+                  <p style={{ color: 'white' }}>
+                    New registration? &nbsp;&nbsp;&nbsp;
+                    <button
+                      className="signupButton"
+                      onClick={() => setIsLogin(false)}
+                    >
+                      Sign up
+                    </button>
+                  </p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <Navigate to="/signup" />
+          )}
         </div>
-    );
+      ) : null}
+    </div>
+  );
 };
 
 export default LoginPage;
