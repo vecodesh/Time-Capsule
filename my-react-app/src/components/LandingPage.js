@@ -38,22 +38,22 @@ const LandingPage = () => {
   const profileData = [
     {
       name: "VISITHRAN D",
-      image: "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/f8239007-7d36-45ce-a0a1-fdf91052b10e/299f5e14-73c4-4a9b-99c9-e44adbc218cf.png",
+      image: "https://media.licdn.com/dms/image/v2/D5635AQHnl-8ugJQXdA/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1734328352236?e=1734933600&v=beta&t=U_qdca8SyuIAyiDnsrAgOWhwZ7qZNb95SwF75wfGTe0",
       linkedIn: "https://www.linkedin.com/in/visithran-d-37a877291/",
     },
     {
       name: "VIJAY SYAM BK",
-      image: "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/f8239007-7d36-45ce-a0a1-fdf91052b10e/299f5e14-73c4-4a9b-99c9-e44adbc218cf.png",
+      image: "https://media.licdn.com/dms/image/v2/D5635AQFJDsrPyU2iPA/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1733758807411?e=1734933600&v=beta&t=QZM5QE1SwBGDptZvpMpaUojWcRiYIrsgtJEa8Vkfhgc",
       linkedIn: "https://www.linkedin.com/in/vijaysyam-bk/",
     },
     {
       name: "VEDESH N",
-      image: "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/f8239007-7d36-45ce-a0a1-fdf91052b10e/299f5e14-73c4-4a9b-99c9-e44adbc218cf.png",
+      image: "https://media.licdn.com/dms/image/v2/D5635AQGiU7CJ-VWPNg/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1734328371715?e=1734933600&v=beta&t=tN1kuSE9REbX3UcGTBbWEULU_ys0Cd33F83eVvV52e8",
       linkedIn: "https://www.linkedin.com/in/vedesh-n-b631b82a1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     },
     {
       name: "VIJAY PH",
-      image: "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/f8239007-7d36-45ce-a0a1-fdf91052b10e/299f5e14-73c4-4a9b-99c9-e44adbc218cf.png",
+      image: "https://media.licdn.com/dms/image/v2/D5603AQFitx-5u0FrSg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1710745107626?e=1740009600&v=beta&t=58HV_k0QD8s0wxqAZg7PzMaQGOdykGqodR8bANDQGig",
       linkedIn: "https://www.linkedin.com/",
     },
   ];
@@ -62,9 +62,6 @@ const LandingPage = () => {
     <Box className="landing-page">
       {/* Running Text */}
       <Box className="running-text-container">
-        <Typography variant="h6" className="running-text">
-          TRAILBLAZERS! Time Capsules: Reliving memories, Setting goals, Acknowledging growth, Decluttering your mind. Time capsules are often created for historical purposes, but they can also be personal projects, meant for an individual or family to reflect on their past at a future point in time.
-        </Typography>
       </Box>
 
       {/* Navigation Bar */}
@@ -77,9 +74,22 @@ const LandingPage = () => {
       {/* Content */}
       <Box className="content-container" textAlign="center" sx={{ pt: 10 }}>
         <Box className="glass-card">
-          <Typography variant="h1" sx={{ fontSize: "4rem", fontWeight: "bold", color: "black", mb: 3 }}>
-            TRAILBLAZERS!
-          </Typography>
+          <Typography variant="h1" sx={{ fontSize: "4rem", fontWeight: "bold", display: "flex", justifyContent: "center", mb: 3 }}>
+  <span style={{ color: "#4285F4" }}>T</span>
+  <span style={{ color: "#EA4335" }}>R</span>
+  <span style={{ color: "#FBBC05" }}>A</span>
+  <span style={{ color: "#34A853" }}>I</span>
+  <span style={{ color: "#EA4335" }}>L</span>
+  <span style={{ color: "#4285F4" }}>B</span>
+  <span style={{ color: "#FBBC05" }}>L</span>
+  <span style={{ color: "#34A853" }}>A</span>
+  <span style={{ color: "#EA4335" }}>Z</span>
+  <span style={{ color: "#4285F4" }}>E</span>
+  <span style={{ color: "#FBBC05" }}>R</span>
+  <span style={{ color: "#34A853" }}>S</span>
+  <span style={{ color: "#EA4335" }}>!</span>
+</Typography>
+
           <Typography variant="h4" sx={{ fontWeight: "light", color: "#666", mb: 3 }}>
             — Write to the Future —
           </Typography>
