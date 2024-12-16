@@ -83,6 +83,7 @@ Key Routes:
 - `/`: Landing Page
 - `/login`: Login Page
 - `/signup`: Signup Page
+- `/homepage`: Home Page
 - `/writeletter`: Write Letter Page
 - `/achievements`: Achievements Page
 - `/community`: Community Page
