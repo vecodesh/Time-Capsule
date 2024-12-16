@@ -73,45 +73,82 @@ const LandingPage = () => {
 
       {/* Content */}
       <Box className="content-container" textAlign="center" sx={{ pt: 10 }}>
-        <Box className="glass-card">
-          <Typography variant="h1" sx={{ fontSize: "4rem", fontWeight: "bold", display: "flex", justifyContent: "center", mb: 3 }}>
-  <span style={{ color: "#4285F4" }}>T</span>
-  <span style={{ color: "#EA4335" }}>R</span>
-  <span style={{ color: "#FBBC05" }}>A</span>
-  <span style={{ color: "#34A853" }}>I</span>
-  <span style={{ color: "#EA4335" }}>L</span>
-  <span style={{ color: "#4285F4" }}>B</span>
-  <span style={{ color: "#FBBC05" }}>L</span>
-  <span style={{ color: "#34A853" }}>A</span>
-  <span style={{ color: "#EA4335" }}>Z</span>
-  <span style={{ color: "#4285F4" }}>E</span>
-  <span style={{ color: "#FBBC05" }}>R</span>
-  <span style={{ color: "#34A853" }}>S</span>
-  <span style={{ color: "#EA4335" }}>!</span>
-</Typography>
+      <Box className="glass-card">
+  <Typography
+    variant="h1"
+    sx={{
+      fontSize: "4rem",
+      fontWeight: "bold",
+      display: "flex",
+      justifyContent: "center",
+      mb: 3,
+    }}
+  >
+    <span style={{ color: "#4285F4" }}>T</span>
+    <span style={{ color: "#EA4335" }}>R</span>
+    <span style={{ color: "#FBBC05" }}>A</span>
+    <span style={{ color: "#34A853" }}>I</span>
+    <span style={{ color: "#EA4335" }}>L</span>
+    <span style={{ color: "#4285F4" }}>B</span>
+    <span style={{ color: "#FBBC05" }}>L</span>
+    <span style={{ color: "#34A853" }}>A</span>
+    <span style={{ color: "#EA4335" }}>Z</span>
+    <span style={{ color: "#4285F4" }}>E</span>
+    <span style={{ color: "#FBBC05" }}>R</span>
+    <span style={{ color: "#34A853" }}>S</span>
+    <span style={{ color: "#EA4335" }}>!</span>
+  </Typography>
 
-          <Typography variant="h4" sx={{ fontWeight: "light", color: "#666", mb: 3 }}>
-            — Write to the Future —
-          </Typography>
-          <Typography variant="body1" className="content-text">
-            Dear Future Me, <br />
-            Hey there! What are you up to a year from now? Or, from your perspective, what was I doing a year ago? Time travel is weird. Honestly, I don’t know what to say—just a quick “Hi, how’s it going?” from your carefree, clueless past self. <br />
-            Stay safe, have fun, and keep being awesome.
-          </Typography>
-          <Button variant="contained" color="primary" onClick={handleLearnMore} className="learn-more-btn">
-            {showDetails ? "Hide Details" : "Learn More"}
-          </Button>
-          <Collapse in={showDetails} timeout="auto" unmountOnExit>
-            <Box className="details-box">
-              <Typography variant="body1">
-                ❤️ <strong>Reliving memories</strong> in vivid detail <br />
-                📈 <strong>Acknowledging growth</strong> & achievements <br />
-                ✅ <strong>Setting goals</strong> for the future <br />
-                😌 <strong>Decluttering your mind</strong> to find some headspace
-              </Typography>
-            </Box>
-          </Collapse>
-        </Box>
+  <Typography
+    variant="h4"
+    sx={{
+      fontWeight: "light",
+      color: "#666",
+      mb: 3,
+    }}
+  >
+    — Write to the Future —
+  </Typography>
+
+  <Typography
+    variant="body1"
+    className="content-text"
+    sx={{
+      mb: 4, // Add a larger bottom margin here
+    }}
+  >
+    Dear Future Me, <br />
+    Hey there! What are you up to a year from now? Or, from your perspective,
+    what was I doing a year ago? Time travel is weird. Honestly, I don’t know
+    what to say—just a quick “Hi, how’s it going?” from your carefree, clueless
+    past self. <br />
+    Stay safe, have fun, and keep being awesome.
+  </Typography>
+
+  <Button
+    variant="contained"
+    color="primary"
+    onClick={handleLearnMore}
+    className="learn-more-btn"
+    sx={{
+      mt: 2, // Add margin at the top to push it further down
+    }}
+  >
+    {showDetails ? "Hide Details" : "Learn More"}
+  </Button>
+
+  <Collapse in={showDetails} timeout="auto" unmountOnExit>
+    <Box className="details-box">
+      <Typography variant="body1">
+        ❤️ <strong>Reliving memories</strong> in vivid detail <br />
+        📈 <strong>Acknowledging growth</strong> & achievements <br />
+        ✅ <strong>Setting goals</strong> for the future <br />
+        😌 <strong>Decluttering your mind</strong> to find some headspace
+      </Typography>
+    </Box>
+  </Collapse>
+</Box>
+
 
         {/* Action Buttons */}
         <Box className="action-buttons" textAlign="center" sx={{ mt: 3 }}>
