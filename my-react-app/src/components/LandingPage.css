@@ -76,12 +76,14 @@
 
 /* Social Icons */
 .social-icons {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
+  position: absolute; /* Position the social icons relative to the viewport */
+  top: 20px; /* Adjust the vertical distance from the top of the page */
+  left: 20px; /* Adjust the horizontal distance from the left of the page */
   display: flex;
-  gap: 10px;
+  gap: 10px; /* Space between the icons */
+  z-index: 1000; /* Ensure they appear above other content */
 }
+
 
 .scroll-to-top {
   position: fixed;
