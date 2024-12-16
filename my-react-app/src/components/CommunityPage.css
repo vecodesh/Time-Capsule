@@ -1,99 +1,106 @@
-/* CommunityPage.css */
+/* === General Styles === */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Arial", sans-serif;
+    background: url("https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_1280.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff;
+}
+
+/* === Community Page Container === */
 .community-container {
-    background: linear-gradient(to right, #003366, #287dd2); /* Dark blue to light blue gradient */
-    padding: 50px 0;
-    min-height: 100vh;
-    animation: fadeIn 2s ease-out;
-}
-
-.community-header {
-    text-align: top;
-    color: white;
-    font-size: 3rem;
-    margin-bottom: 30px;
-    animation: slideIn 1s ease-out;
-}
-
-.community-letters-list {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.community-letter-card {
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    width: 250px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transform: translateY(20px);
-    opacity: 0;
-    animation: cardFadeIn 1s ease-in-out forwards;
-    transition: transform 0.3s ease-in-out;
-}
-
-.community-profile-pic {
-    width: 100%;
-    height: 150px;
-    background-color: #f1f1f1;
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 30px;
+    min-height: 100vh;
+    background: rgba(0, 0, 0, 0.6); /* Slight overlay for text readability */
+    border-radius: 10px;
 }
 
+/* === Header === */
+.community-header {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #f0f8ff; /* Light color for better visibility */
+    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* === Letters List === */
+.community-letters-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* === Individual Letter Card === */
+.community-letter-card {
+    background-color: rgba(255, 255, 255, 0.9); /* Light background with opacity */
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+    color: #333;
+}
+
+/* Hover Effect */
+.community-letter-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* === Profile Picture === */
 .community-profile-pic img {
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid #4c91ff;
 }
 
+/* === Content === */
 .community-letter-content {
-    padding: 15px;
+    flex: 1;
 }
 
 .community-user-name {
+    margin: 0 0 5px 0;
     font-size: 1.2rem;
-    color: #003366;
-    margin: 10px 0;
+    font-weight: bold;
+    color: #333333;
 }
 
 .community-letter-snippet {
-    font-size: 1rem;
-    color: #555;
+    margin: 0;
+    font-size: 0.95rem;
+    color: #555555;
 }
 
-.community-letter-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
+/* === Responsive Design === */
+@media (max-width: 768px) {
+    .community-header {
+        font-size: 2rem;
     }
-    100% {
-        opacity: 1;
+    .community-letter-card {
+        flex-direction: column;
+        text-align: center;
     }
-}
-
-@keyframes slideIn {
-    0% {
-        transform: translateY(-20px);
-    }
-    100% {
-        transform: translateY(0);
+    .community-profile-pic img {
+        margin: 0 0 10px 0;
     }
 }
 
-@keyframes cardFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
+@media (max-width: 480px) {
+    .community-header {
+        font-size: 1.5rem;
     }
 }
