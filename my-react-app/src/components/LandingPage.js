@@ -217,16 +217,17 @@ const LandingPage = () => {
 
       {/* Social Icons */}
       <Box className="social-icons">
-        <IconButton>
-          <FacebookIcon />
-        </IconButton>
-        <IconButton>
-          <TwitterIcon />
-        </IconButton>
-        <IconButton>
-          <InstagramIcon />
-        </IconButton>
-      </Box>
+  <IconButton href="https://facebook.com" target="_blank">
+    <FacebookIcon className="facebook-icon" />
+  </IconButton>
+  <IconButton href="https://twitter.com" target="_blank">
+    <TwitterIcon className="twitter-icon" />
+  </IconButton>
+  <IconButton href="https://instagram.com" target="_blank">
+    <InstagramIcon className="instagram-icon" />
+  </IconButton>
+</Box>
+
 
       {/* Scroll to Top */}
       {showScroll && (

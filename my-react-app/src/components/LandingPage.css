@@ -75,14 +75,49 @@
 }
 
 /* Social Icons */
+/* Social Icon Styles */
+/* Social Icons Section */
+/* Social Icons Container */
+/* Social Icons Container */
 .social-icons {
-  position: absolute; /* Position the social icons relative to the viewport */
-  top: 20px; /* Adjust the vertical distance from the top of the page */
-  left: 20px; /* Adjust the horizontal distance from the left of the page */
-  display: flex;
-  gap: 10px; /* Space between the icons */
-  z-index: 1000; /* Ensure they appear above other content */
+  position: absolute; /* Absolute positioning relative to the viewport */
+  top: 20px; /* Distance from the top */
+  left: 20px; /* Distance from the left */
+  display: flex; /* Flexbox for horizontal layout */
+  gap: 15px; /* Spacing between icons */
+  z-index: 1000; /* Ensure the icons appear above other elements */
 }
+
+/* Facebook Official Design */
+.facebook-icon {
+  color: #1877F2; /* Official Facebook Blue */
+  font-size: 2rem; /* Icon size */
+  transition: transform 0.2s, color 0.2s; /* Smooth hover effect */
+}
+.facebook-icon:hover {
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+/* Twitter Official Design */
+.twitter-icon {
+  color: #1DA1F2; /* Official Twitter Blue */
+  font-size: 2rem;
+  transition: transform 0.2s, color 0.2s;
+}
+.twitter-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Instagram Official Design */
+.instagram-icon {
+  color: #E4405F; /* Official Instagram Red-Pink */
+  font-size: 2rem;
+  transition: transform 0.2s, color 0.2s;
+}
+.instagram-icon:hover {
+  transform: scale(1.1);
+}
+
 
 
 .scroll-to-top {
@@ -214,5 +249,5 @@
 }
 
 .glass-card {
-  animation: popIn 1s ease-in-out;
+  animation: popIn 1s ease-in-out;
 }
