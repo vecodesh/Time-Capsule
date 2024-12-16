@@ -23,7 +23,7 @@ const HomePage = () => {
             >
               Write a Letter
             </Link>
-            <Link to="/view-letters" className="btn btn-secondary mx-2">
+            <Link to="/view-letters"  state={{ email }} className="btn btn-secondary mx-2">
               View Letters
             </Link>
             <Link to="/achievements" className="btn btn-success mx-2">

@@ -53,13 +53,9 @@ app.post('/messages', (req, res) => {
     });
   });
 
-// GET route to fetch messages for a specific email
+ // GET route to fetch messages
 app.get('/messages', (req, res) => {
-  const { email } = req.query;
-
-  if (!email) {
-    return res.status(400).json({ message: 'Email is required to fetch messages' });
-  }
+  const { email } = req.query; // Get email query parameter if provided
 
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
@@ -73,12 +69,18 @@ app.get('/messages', (req, res) => {
       return res.status(500).json({ message: 'Error parsing message file', error: parseError });
     }
 
-    const userMessages = messages.filter((msg) => msg.email === email);
-    res.json({ message: 'Messages fetched successfully', data: userMessages });
+    // Filter messages by email if email query is provided
+    const filteredMessages = email
+      ? messages.filter((msg) => msg.email === email)
+      : messages;
+
+    res.json({ message: 'Messages fetched successfully', data: filteredMessages });
   });
 });
 
+  
 // Start the server
 app.listen(port, () => {
   console.log(`Mail backend server running at http://localhost:${port}`);
 });
+

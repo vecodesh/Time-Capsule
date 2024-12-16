@@ -1,0 +1,70 @@
+.view-letters-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .view-letters-container .view-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  .back-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .back-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .letters-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .letter-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #f9f9f9;
+  }
+  
+  .letter-card h3 {
+    margin-bottom: 10px;
+  }
+  
+  .letter-card p {
+    margin: 5px 0;
+  }
+  
+  .letter-message {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  
+  .attachments ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .attachments li {
+    margin: 5px 0;
+    font-style: italic;
+    color: #555;
+  }
+  
