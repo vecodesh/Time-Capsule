@@ -98,15 +98,15 @@ const WriteLetter = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="message">Your Message</label>
-          <ReactQuill
-            id="message"
-            value={message}
-            onChange={handleMessageChange}
-            theme={theme}
-            placeholder="Write your message here..."
-          />
-          {errors.message && <p className="error">{errors.message}</p>}
+            <label htmlFor="message">Your Message</label>
+              <ReactQuill
+                id="message"
+                value={message}
+                onChange={handleMessageChange}
+                theme={theme}
+                placeholder="Write your message here..."
+              />
+                {errors.message && <p className="error">{errors.message}</p>}
         </div>
 
         <div className="form-group">
@@ -125,8 +125,11 @@ const WriteLetter = () => {
 
         <div className="form-group">
           <label>Selected Date and Time:</label>
-          <p>{formattedDateTime}</p>
+            <span style={{ fontSize: "1rem", color: "#333" }}>
+              {formattedDateTime}
+            </span>
         </div>
+
 
         <div className="form-group">
           <label htmlFor="attachments">Attach Files</label>

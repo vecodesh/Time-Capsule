@@ -79,6 +79,15 @@ input[type="file"] {
   border-color: #4c91ff;
   box-shadow: 0 0 4px rgba(76, 145, 255, 0.5);
 }
+.ql-editor {
+  min-height: 150px; /* Ensures the text editor is tall enough */
+  font-size: 1rem;
+  color: #000; /* Sets a visible text color */
+}
+
+.ql-editor.ql-blank::before {
+  color: #aaa; /* Placeholder color */
+}
 
 /* === Button Styling === */
 button {
