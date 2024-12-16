@@ -4,43 +4,68 @@ import "react-quill/dist/quill.snow.css";
 import "react-quill/dist/quill.bubble.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "./WriteLetter.css"; 
+import { useLocation } from 'react-router-dom';
+import axios from "axios";
+import "./WriteLetter.css";
 
 const WriteLetter = () => {
+  const location = useLocation();
+  const email = location.state?.email; // Get email from location state
+
   const [mood, setMood] = useState("");
   const [theme, setTheme] = useState("snow");
   const [message, setMessage] = useState("");
-  const [email, setEmail] = useState("");
   const [attachments, setAttachments] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(new Date()); 
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [errors, setErrors] = useState({});
 
   const handleMoodChange = (e) => setMood(e.target.value);
   const handleThemeChange = (e) => setTheme(e.target.value);
   const handleMessageChange = (value) => setMessage(value);
-  const handleEmailChange = (e) => setEmail(e.target.value);
   const handleAttachmentChange = (e) =>
     setAttachments([...attachments, ...e.target.files]);
   const handleDateChange = (date) => setSelectedDate(date);
-
-  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const validateForm = () => {
     const newErrors = {};
     if (!mood) newErrors.mood = "Please select a mood.";
     if (!message.trim()) newErrors.message = "Message cannot be empty.";
-    if (!email) newErrors.email = "Email is required.";
-    else if (!isValidEmail(email)) newErrors.email = "Invalid email address.";
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
-      alert("Letter submitted successfully!");
-      console.log({ mood, theme, message, email, selectedDate, attachments });
-      setErrors({});
+      const letterData = {
+        email,
+        mood,
+        theme,
+        message,
+        date: selectedDate.toISOString(),
+        attachments,
+      };
+
+      try {
+        const response = await axios.post("http://localhost:5001/messages", letterData);
+        if (response.status === 200) {
+          alert("Letter submitted successfully!");
+          setErrors({});
+          setMood("");
+          setTheme("snow");
+          setMessage("");
+          setAttachments([]);
+          setSelectedDate(new Date());
+        }
+      } catch (error) {
+        console.error("Error submitting letter:", error);
+        if (error.response) {
+          alert(`Error: ${error.response.data.message}`);
+        } else {
+          alert("There was an error submitting your letter. Please try again.");
+        }
+      }
     } else {
       setErrors(validationErrors);
     }
@@ -52,7 +77,7 @@ const WriteLetter = () => {
     <div className="community-container">
       <form className="community-form" onSubmit={handleSubmit}>
         <h2 className="header">Write Your Letter</h2>
-  
+
         <div className="form-group">
           <label htmlFor="mood">Select Mood</label>
           <select id="mood" value={mood} onChange={handleMoodChange}>
@@ -63,7 +88,7 @@ const WriteLetter = () => {
           </select>
           {errors.mood && <p className="error">{errors.mood}</p>}
         </div>
-  
+
         <div className="form-group">
           <label htmlFor="theme">Select Theme</label>
           <select id="theme" value={theme} onChange={handleThemeChange}>
@@ -71,19 +96,7 @@ const WriteLetter = () => {
             <option value="bubble">Futuristic</option>
           </select>
         </div>
-  
-        <div className="form-group">
-          <label htmlFor="email">Your Email</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={handleEmailChange}
-            placeholder="Enter your email"
-          />
-          {errors.email && <p className="error">{errors.email}</p>}
-        </div>
-  
+
         <div className="form-group">
           <label htmlFor="message">Your Message</label>
           <ReactQuill
@@ -95,7 +108,7 @@ const WriteLetter = () => {
           />
           {errors.message && <p className="error">{errors.message}</p>}
         </div>
-  
+
         <div className="form-group">
           <label htmlFor="date">Select Date and Time</label>
           <DatePicker
@@ -105,17 +118,16 @@ const WriteLetter = () => {
             dateFormat="dd/MM/yyyy"
             showTimeSelect
             timeFormat="HH:mm"
-            timeIntervals={15} 
+            timeIntervals={15}
             className="react-datepicker__input-container"
           />
         </div>
 
-        
         <div className="form-group">
           <label>Selected Date and Time:</label>
           <p>{formattedDateTime}</p>
         </div>
-  
+
         <div className="form-group">
           <label htmlFor="attachments">Attach Files</label>
           <input
@@ -128,7 +140,7 @@ const WriteLetter = () => {
             <p>{attachments.length} file(s) selected</p>
           )}
         </div>
-  
+
         <button type="submit">Send Letter</button>
       </form>
     </div>

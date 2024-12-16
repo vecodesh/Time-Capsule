@@ -15,10 +15,23 @@ const HomePage = () => {
         </video>
         <div className="navbar">
           <div className="nav-links">
-            <Link to="/write-letter" className="btn btn-primary mx-2">Write a Letter</Link>
-            <Link to="/view-letters" className="btn btn-secondary mx-2">View Letters</Link>
-            <Link to="/achievements" className="btn btn-success mx-2">Achievements</Link>
-            <Link to="/community" className="btn btn-info mx-2">Community</Link>
+            {/* Pass email to Write Letter via state */}
+            <Link 
+              to="/write-letter" 
+              state={{ email }} 
+              className="btn btn-primary mx-2"
+            >
+              Write a Letter
+            </Link>
+            <Link to="/view-letters" className="btn btn-secondary mx-2">
+              View Letters
+            </Link>
+            <Link to="/achievements" className="btn btn-success mx-2">
+              Achievements
+            </Link>
+            <Link to="/community" className="btn btn-info mx-2">
+              Community
+            </Link>
           </div>
           {/* Display the email in the top-right corner */}
           <div className="email-display">

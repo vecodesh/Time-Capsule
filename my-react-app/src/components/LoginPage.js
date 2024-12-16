@@ -55,11 +55,11 @@ const LoginPage = () => {
             <h1 className="heading">LOGIN</h1>
             <div className="inputGroup">
               <p style={{ color: 'white' }}>
-                Username
+                Email
                 <input
                   className="inputField"
                   type='text'
-                  placeholder='Enter Username'
+                  placeholder='Enter Email'
                   value={username}
                   onChange={handleUsernameChange}
                 />

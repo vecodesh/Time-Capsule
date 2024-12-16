@@ -69,14 +69,14 @@ app.get('/Users', (req, res) => {
 
     let users;
     try {
-      users = JSON.parse(data || '[]'); // Parse data
+      users = JSON.parse(data || '[]');
       console.log('Parsed users from file:', users);
     } catch (parseError) {
       console.error('Error parsing JSON:', parseError);
       return res.status(500).json({ message: 'Error parsing user data', error: parseError });
     }
 
-    // Find the user
+    // Match user (case-insensitive email, exact password)
     const user = users.find(
       (u) =>
         u.email.trim().toLowerCase() === email.trim().toLowerCase() &&
@@ -92,7 +92,6 @@ app.get('/Users', (req, res) => {
     }
   });
 });
-
 
 
 // Start the server
