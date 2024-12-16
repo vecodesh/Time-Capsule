@@ -1,6 +1,6 @@
 import React from "react";
 import "./Achievements.css";
-import awardImage from "./award.png";
+import awardImage from "./award.png"; // Import the award image
 
 const Achievements = () => {
     const achievements = [
@@ -12,6 +12,16 @@ const Achievements = () => {
         { id: 6, title: "Creative Genius", description: "You achieved creative brilliance with your letters." }
     ];
 
+    // Function to colorize the text
+    const coloredHeaderText = (text) => {
+        const colors = ["#EA4335", "#34A853", "#4285F4", "#FBBC05"]; // Google vibrant colors: red, green, blue, yellow
+        return text.split("").map((char, index) => (
+            <span key={index} style={{ color: colors[index % colors.length] }}>
+                {char}
+            </span>
+        ));
+    };
+
     return (
         <div className="achievements-container">
             {/* Trophy Section */}
@@ -21,7 +31,9 @@ const Achievements = () => {
 
             {/* Achievements Section */}
             <div className="achievements-content">
-                <h2 className="achievements-header">Your Achievements</h2>
+                <h2 className="achievements-header">
+                    {coloredHeaderText("Your Achievements")}
+                </h2>
                 {achievements.map((item) => (
                     <div key={item.id} className="achievement-item">
                         <div className="number-box">{item.id}</div>
