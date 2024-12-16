@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import "react-quill/dist/quill.bubble.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "./WriteLetter.css"; // Your provided CSS
+import "./WriteLetter.css"; 
 
 const WriteLetter = () => {
   const [mood, setMood] = useState("");
@@ -12,7 +12,7 @@ const WriteLetter = () => {
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
   const [attachments, setAttachments] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(new Date()); // Date picker state
+  const [selectedDate, setSelectedDate] = useState(new Date()); 
   const [errors, setErrors] = useState({});
 
   const handleMoodChange = (e) => setMood(e.target.value);
@@ -46,7 +46,6 @@ const WriteLetter = () => {
     }
   };
 
-  // Format the selected date and time for display
   const formattedDateTime = selectedDate.toLocaleString();
 
   return (

@@ -7,7 +7,7 @@ import HomePage from "./components/HomePage";
 import WriteLetter from "./components/WriteLetter";
 import Achievements from "./components/Achievements";
 import CommunityPage from "./components/CommunityPage";
-import "./App.css";  // Import main CSS for App
+import "./App.css";  
 
 const App = () => {
   return (
