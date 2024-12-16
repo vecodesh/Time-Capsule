@@ -111,7 +111,7 @@ const WriteLetter = () => {
           />
         </div>
 
-        {/* Display the selected date and time below the picker */}
+        
         <div className="form-group">
           <label>Selected Date and Time:</label>
           <p>{formattedDateTime}</p>
