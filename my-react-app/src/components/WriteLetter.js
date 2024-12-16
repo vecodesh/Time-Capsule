@@ -105,7 +105,7 @@ const WriteLetter = () => {
             dateFormat="dd/MM/yyyy"
             showTimeSelect
             timeFormat="HH:mm"
-            timeIntervals={15} // Time intervals in minutes
+            timeIntervals={15} 
             className="react-datepicker__input-container"
           />
         </div>
