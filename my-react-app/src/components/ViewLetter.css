@@ -1,13 +1,4 @@
-/* Ensure the html and body fill the viewport */
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%; /* Full viewport height */
-    background: url("https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_1280.jpg") no-repeat center center fixed; /* Background image */
-    background-size: cover; /* Ensure the image covers the entire screen */
-  }
-  
-  /* Main container */
+/* Main container */
   .view-letters {
     display: flex;
     flex-direction: column;

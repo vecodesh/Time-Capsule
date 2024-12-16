@@ -38,5 +38,21 @@
     "phone": "8220092495",
     "username": "Visithran",
     "password": "Visithran@123"
+  },
+  {
+    "name": "Vedesh",
+    "age": "19",
+    "email": "vecodesh@gmail.com",
+    "phone": "9840984300",
+    "username": "Vecodesh",
+    "password": "Vecodesh@123"
+  },
+  {
+    "name": "vedesh",
+    "age": "20",
+    "email": "micahthatungbro12345@gmail.com",
+    "phone": "9840984300",
+    "username": "vedesh",
+    "password": "Vedesh@123"
   }
 ]
