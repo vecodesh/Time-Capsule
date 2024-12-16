@@ -1,6 +1,6 @@
 import React from "react";
 import "./Achievements.css";
-import awardImage from "./award.png"; // Import the award image
+import awardImage from "./award.png";
 
 const Achievements = () => {
     const achievements = [
