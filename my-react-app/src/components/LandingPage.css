@@ -89,26 +89,6 @@
   right: 20px;
 }
 
-/* Running Text Styles */
-.running-text-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  color: black;
-  padding: 10px 0;
-  z-index: 1000;
-  
-}
-
-.running-text {
-  display: inline-block;
-  white-space: nowrap;
-  font-size: 250%; /* Adjust as per your requirement */
-  font-weight: bold;
-  animation: scrollText 10s linear infinite; /* Continuous scrolling animation */
-}
-
 @keyframes scrollText {
   0% {
     transform: translateX(50px); /* Start from the right edge */
@@ -217,21 +197,20 @@
   margin-bottom: 15px;
 }
 
-/* Pop-up Animation */
-@keyframes popUp {
+@keyframes popIn {
   0% {
+    transform: scale(0.5);
     opacity: 0;
-    transform: translate(-50%, -60%) scale(0.9); /* Start lower and smaller */
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.05); /* Slightly overshoot the final size */
   }
   70% {
-    transform: translate(-50%, -50%) scale(0.95); /* Slight bounce back */
+    transform: scale(1.2);
+    opacity: 1;
   }
   100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1); /* End at the correct position and size */
+    transform: scale(1);
   }
+}
+
+.glass-card {
+  animation: popIn 1s ease-in-out;
 }
