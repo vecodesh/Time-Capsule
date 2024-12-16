@@ -1,5 +1,8 @@
 # Time Capsule
 
+![logo](https://github.com/user-attachments/assets/5bde12c2-b3a0-49d5-a6fe-3c41105b3267)
+
+
 **Time Capsule** is a futuristic platform designed to let users write to their future selves, relive memories, and set goals for tomorrow. The project uses modern web technologies like React, React Router, Material-UI (MUI), and a custom backend with APIs to deliver a seamless user experience.
 
 ---
