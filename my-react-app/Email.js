@@ -1,43 +1,36 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
+const schedule = require('node-schedule'); // Import node-schedule
 const app = express();
 const port = 5002;
 
-// Enable CORS to allow requests from frontend (localhost:3000)
 app.use(cors());
-
-// Middleware to parse JSON bodies
 app.use(express.json());
 
-// Create a transporter using Gmail SMTP
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'vjsyam17@gmail.com', // Your Gmail address
-    pass: 'mbvw stka ktcc fkda', // Your application-specific password
+    user: 'vjsyam17@gmail.com',
+    pass: 'mbvw stka ktcc fkda',
   },
 });
 
-// Endpoint to handle sending emails
 app.post('/send-email', async (req, res) => {
-  const { to, subject, text } = req.body; // Extract email details from request body
+  const { to, subject, text } = req.body;
 
-  // Validate request body
   if (!to || !subject || !text) {
     return res.status(400).json({ message: 'Missing email fields: to, subject, or text' });
   }
 
-  // Email options
   const mailOptions = {
-    from: 'vjsyam17@gmail.com',  // Sender's email
-    to: to,                     // Receiver's email (from request)
-    subject: subject,           // Subject (from request)
-    text: text,                 // Message body (from request)
+    from: 'vjsyam17@gmail.com',
+    to: to,
+    subject: subject,
+    text: text,
   };
 
   try {
-    // Send the email
     const info = await transporter.sendMail(mailOptions);
     console.log('Email sent successfully:', info.response);
     res.status(200).json({ message: 'Email sent successfully!', info: info.response });
@@ -47,7 +40,26 @@ app.post('/send-email', async (req, res) => {
   }
 });
 
-// Start the server
+// Schedule email sending
+app.post('/schedule-email', (req, res) => {
+  const { to, subject, text, dateTime } = req.body;
+
+  if (!to || !subject || !text || !dateTime) {
+    return res.status(400).json({ message: 'Missing fields: to, subject, text, or dateTime' });
+  }
+
+  const job = schedule.scheduleJob(new Date(dateTime), async () => {
+    try {
+      const info = await transporter.sendMail({ from: 'vjsyam17@gmail.com', to, subject, text });
+      console.log('Scheduled email sent successfully:', info.response);
+    } catch (error) {
+      console.error('Error sending scheduled email:', error);
+    }
+  });
+
+  res.status(200).json({ message: 'Email scheduled successfully!' });
+});
+
 app.listen(port, () => {
   console.log(`Email server running on http://localhost:${port}`);
 });
