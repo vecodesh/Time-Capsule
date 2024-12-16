@@ -30,9 +30,21 @@ const ViewLetter = () => {
     fetchMessages();
   }, [email]);
 
+  // Function to style the "View Letters" text dynamically
+  const renderColoredText = (text) => {
+    const colors = ["#EA4335", "#34A853", "#4285F4", "#FBBC05"]; // Google colors: red, green, blue, yellow
+    return text.split("").map((char, index) => (
+      <span key={index} style={{ color: colors[index % colors.length] }}>
+        {char}
+      </span>
+    ));
+  };
+
   return (
     <div className="view-letters">
-      <h1>View Letters</h1>
+      <h1 className="header">
+        {renderColoredText("View Letters")}
+      </h1>
       {error ? (
         <p>{error}</p>
       ) : letters.length > 0 ? (
